@@ -973,56 +973,95 @@ a {
   max-width: 100%;
 }
 
-/* Responsive Rules */
-@media (max-width: 768px) {
-  .session-tabs-grid {
-    grid-template-columns: 1fr;
+/* ==========================================================================
+   OPTIMASI MOBILE RESPONSIVE (PERBAIKAN TAMPILAN HP)
+   ========================================================================== */
+@media screen and (max-width: 768px) {
+  /* 1. Atur ulang padding container utama agar tidak terlalu memakan tempat di HP */
+  .main-wrapper {
+    padding: 0.75rem 0.5rem;
+    gap: 1rem;
   }
 
+  /* 2. Navbar: Jadikan kolom ke bawah dan menu navigasi membungkus (wrap) dengan rapi */
+  .navbar-container {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+  }
+
+  .navbar-nav {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 0.35rem;
+  }
+
+  .nav-item-link {
+    width: 100%;
+    justify-content: flex-start;
+    padding: 0.6rem 0.85rem;
+  }
+
+  /* Ukuran judul brand di header atas */
+  .brand-main-title {
+    font-size: 0.95rem;
+  }
+  
+  .brand-sub-title {
+    font-size: 0.72rem;
+  }
+
+  /* 3. Sesi Pilihan Latihan (Kelas 10 & 11) menjadi 1 kolom ke bawah */
+  .session-tabs-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .session-header-row {
+    flex-direction: column;
+    align-items: stretch !important;
+    gap: 0.5rem;
+  }
+
+  .date-badge-picker {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  /* 4. Ringkasan Status Presensi (Summary Strip) menjadi Grid 2 Kolom */
+  .summary-strip {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+  }
+
+  .summary-pill {
+    min-width: unset;
+    padding: 0.5rem 0.75rem;
+  }
+
+  /* 5. Pilihan Status Individu (Hadir/Izin/Sakit) */
   .status-choice-grid {
     grid-template-columns: 1fr;
   }
 
-  .navbar-container {
-    flex-direction: column;
-    align-items: flex-start;
+  /* 6. Penyesuaian Tombol Aksi di Header Tabel Admin */
+  .app-card > div[style*="display: flex"] {
+    flex-direction: column !important;
+    align-items: stretch !important;
   }
 
-  .navbar-nav {
+  .app-card > div[style*="display: flex"] > div {
     width: 100%;
-    overflow-x: auto;
-    padding-bottom: 0.25rem;
-  }
-
-  .summary-strip {
-    grid-template-columns: 1fr 1fr;
-    display: grid;
-  }
-}
-
-/* Pengaturan Responsive khusus untuk layar HP (Maksimal lebar 768px) */
-@media screen and (max-width: 768px) {
-  /* Ubah layout navbar menjadi menumpuk ke bawah */
-  .navbar-container {
+    display: flex;
     flex-direction: column;
-    align-items: stretch;
-    gap: 1rem;
-    padding: 1rem;
+    gap: 0.4rem;
   }
 
-  .navbar-nav {
-    flex-wrap: wrap;
+  .app-card button {
+    width: 100%;
     justify-content: center;
-    gap: 0.5rem;
-  }
-
-  /* Sesuaikan ukuran font judul di mobile agar tidak terlalu besar */
-  .brand-main-title {
-    font-size: 0.9rem;
-  }
-  
-  .brand-sub-title {
-    font-size: 0.75rem;
   }
 }
-
