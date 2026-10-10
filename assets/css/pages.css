@@ -1,0 +1,463 @@
+/* ==========================================================================
+   Pages Specific Styles (pages.css)
+   PMR Wira SMKN 7 Samarinda Attendance Management System
+   ========================================================================== */
+
+/* Filter & Action Toolbar */
+.toolbar-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1rem 1.25rem;
+  box-shadow: var(--shadow-xs);
+}
+
+.toolbar-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  flex: 1;
+}
+
+.toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.filter-select {
+  padding: 0.5rem 0.85rem;
+  font-size: 0.82rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-surface);
+  color: var(--text-secondary);
+  font-weight: 500;
+  cursor: pointer;
+  outline: none;
+}
+
+.filter-select:focus {
+  border-color: var(--pmr-red-600);
+}
+
+/* Status Filter Tabs */
+.filter-tabs {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  background-color: var(--bg-surface-subtle);
+  padding: 0.25rem;
+  border-radius: var(--radius-md);
+  overflow-x: auto;
+}
+
+.tab-btn {
+  padding: 0.35rem 0.75rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  white-space: nowrap;
+  transition: all var(--transition-fast);
+}
+
+.tab-btn:hover {
+  color: var(--text-main);
+}
+
+.tab-btn.active {
+  background-color: var(--bg-surface);
+  color: var(--pmr-red-700);
+  box-shadow: var(--shadow-xs);
+}
+
+.tab-count {
+  margin-left: 0.35rem;
+  font-size: 0.7rem;
+  padding: 0.1rem 0.4rem;
+  border-radius: var(--radius-full);
+  background-color: var(--pmr-red-50);
+  color: var(--pmr-red-700);
+}
+
+/* Attendance Quick Status Selector in Table */
+.attendance-toggle-group {
+  display: inline-flex;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 2px;
+  background-color: var(--bg-surface-subtle);
+  gap: 2px;
+}
+
+.att-btn {
+  padding: 0.25rem 0.55rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  transition: all var(--transition-fast);
+}
+
+.att-btn:hover {
+  color: var(--text-main);
+}
+
+.att-btn.active-hadir {
+  background-color: #16a34a;
+  color: #ffffff;
+}
+
+.att-btn.active-sakit {
+  background-color: #d97706;
+  color: #ffffff;
+}
+
+.att-btn.active-izin {
+  background-color: #2563eb;
+  color: #ffffff;
+}
+
+.att-btn.active-alpa {
+  background-color: #dc2626;
+  color: #ffffff;
+}
+
+/* QR Code Scanner Simulation Component */
+.qr-scanner-box {
+  background: #0f172a;
+  border-radius: var(--radius-lg);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 240px;
+}
+
+.scanner-reticle {
+  width: 170px;
+  height: 170px;
+  border: 2px dashed rgba(255, 255, 255, 0.4);
+  border-radius: var(--radius-md);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scanner-laser {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #ef4444;
+  box-shadow: 0 0 8px #ef4444;
+  animation: laserScan 2s ease-in-out infinite alternate;
+}
+
+@keyframes laserScan {
+  0% { top: 10%; }
+  100% { top: 90%; }
+}
+
+.scanner-status-text {
+  margin-top: 1rem;
+  font-size: 0.82rem;
+  color: #94a3b8;
+}
+
+/* Blood Type Badges (Iconic PMR attribute) */
+.badge-blood {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  font-weight: 800;
+  font-size: 0.72rem;
+  background-color: var(--pmr-red-50);
+  color: var(--pmr-red-700);
+  border: 1px solid var(--pmr-red-100);
+}
+
+/* Schedule Calendar Grid */
+.calendar-week-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+}
+
+.calendar-day-col {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 380px;
+}
+
+.calendar-day-header {
+  padding: 0.75rem;
+  background-color: var(--bg-surface-subtle);
+  border-bottom: 1px solid var(--border-color);
+  text-align: center;
+}
+
+.calendar-day-name {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.calendar-day-date {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.calendar-day-events {
+  padding: 0.65rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  flex: 1;
+}
+
+.calendar-event-card {
+  padding: 0.65rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-body);
+  font-size: 0.74rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  transition: all var(--transition-fast);
+  cursor: pointer;
+}
+
+.calendar-event-card:hover {
+  border-color: var(--pmr-red-600);
+  box-shadow: var(--shadow-xs);
+  transform: translateY(-1px);
+}
+
+.calendar-event-time {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* Printable Report / Kop Surat Official Styling */
+.official-report-sheet {
+  background-color: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.school-letterhead {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  border-bottom: 3px double #0f172a;
+  padding-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.letterhead-logo {
+  width: 72px;
+  height: 72px;
+  flex-shrink: 0;
+}
+
+.letterhead-text {
+  text-align: center;
+  flex: 1;
+}
+
+.letterhead-pemerintah {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #475569;
+  letter-spacing: 0.05em;
+}
+
+.letterhead-sekolah {
+  font-size: 1.25rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #0f172a;
+  letter-spacing: 0.02em;
+}
+
+.letterhead-pmr {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--pmr-red-700);
+  text-transform: uppercase;
+}
+
+.letterhead-alamat {
+  font-size: 0.74rem;
+  color: #64748b;
+  margin-top: 0.2rem;
+}
+
+.report-doc-title {
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin-bottom: 0.35rem;
+}
+
+.report-doc-period {
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.signature-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3rem;
+  margin-top: 2.5rem;
+  text-align: center;
+}
+
+.sig-title {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.sig-role {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 3.5rem;
+}
+
+.sig-name {
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-decoration: underline;
+  color: var(--text-main);
+}
+
+.sig-nip {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* Pagination Component */
+.pagination-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 1.25rem;
+  border-top: 1px solid var(--border-color);
+  background-color: var(--bg-surface);
+}
+
+.pagination-info {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.pagination-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.page-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-surface);
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.page-btn:hover {
+  background-color: var(--bg-surface-subtle);
+  border-color: #cbd5e1;
+}
+
+.page-btn.active {
+  background-color: var(--pmr-red-600);
+  border-color: var(--pmr-red-600);
+  color: #ffffff;
+}
+
+/* Responsive Overrides for Pages */
+@media (max-width: 992px) {
+  .calendar-week-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .signature-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .toolbar-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+/* Print Media Rules for Official Reports */
+@media print {
+  .app-sidebar,
+  .app-header,
+  .toolbar-container,
+  .toast-container,
+  .modal-overlay,
+  .pagination-wrap,
+  .btn,
+  .card:not(.official-report-sheet) {
+    display: none !important;
+  }
+
+  body, .app-layout, .app-main, .app-content {
+    background-color: #ffffff !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+  }
+
+  .official-report-sheet {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    display: block !important;
+  }
+}
+

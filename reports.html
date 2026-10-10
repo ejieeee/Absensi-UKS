@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rekap Laporan Latihan PMR - SMKN 7 Samarinda</title>
+
+  <link rel="icon" type="image/svg+xml" href="assets/images/pmr-logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="assets/css/main.css">
+
+  <style>
+    /* Styling Kop Surat Resmi Siap Cetak */
+    .report-sheet-container {
+      background: #ffffff;
+      border: 1px solid var(--border-app);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      box-shadow: var(--shadow-card);
+    }
+
+    .school-kop-header {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      border-bottom: 3px double #1e293b;
+      padding-bottom: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .kop-logo-img {
+      width: 76px;
+      height: 76px;
+      flex-shrink: 0;
+    }
+
+    .kop-text-center {
+      text-align: center;
+      flex: 1;
+    }
+
+    .kop-pemerintah {
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #475569;
+      letter-spacing: 0.05em;
+    }
+
+    .kop-sekolah {
+      font-size: 1.3rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: #0f172a;
+    }
+
+    .kop-pmr {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--pmr-primary);
+      text-transform: uppercase;
+    }
+
+    .kop-alamat {
+      font-size: 0.74rem;
+      color: #64748b;
+      margin-top: 0.2rem;
+    }
+
+    .report-doc-title {
+      text-align: center;
+      font-size: 1.1rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      margin-bottom: 0.25rem;
+    }
+
+    .report-doc-subtitle {
+      text-align: center;
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .signature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      margin-top: 2.5rem;
+      text-align: center;
+    }
+
+    @media print {
+      .app-navbar, .toolbar-filter-row, .btn-app {
+        display: none !important;
+      }
+      body, .main-wrapper {
+        background: #ffffff !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+      .report-sheet-container {
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top App Navigation -->
+  <header class="app-navbar">
+    <div class="navbar-container">
+      <div class="brand-wrapper">
+        <img src="assets/images/pmr-logo.svg" alt="Logo PMR" class="brand-logo-img">
+        <div class="brand-details">
+          <span class="brand-main-title">PRESENSI LATIHAN PMR</span>
+          <span class="brand-sub-title">PMR Wira SMKN 7 Samarinda &bull; Unit 07-SMD</span>
+        </div>
+      </div>
+
+      <nav aria-label="Navigasi Menu">
+        <ul class="navbar-nav">
+          <li>
+            <a href="admin.html" class="nav-item-link active">
+              <i class="bi bi-grid-1x2-fill"></i>
+              <span>Monitoring Presensi</span>
+            </a>
+          </li>
+          <li>
+            <a href="history.html" class="nav-item-link">
+              <i class="bi bi-clock-history"></i>
+              <span>Riwayat Latihan</span>
+            </a>
+          </li>
+          <li>
+            <a href="members.html" class="nav-item-link">
+              <i class="bi bi-people-fill"></i>
+              <span>Data Anggota</span>
+            </a>
+          </li>
+          <li>
+            <a href="reports.html" class="nav-item-link active">
+              <i class="bi bi-file-earmark-text"></i>
+              <span>Rekap Laporan</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Konten Utama -->
+  <main class="main-wrapper">
+
+    <!-- Toolbar Pengaturan Rekap -->
+    <section class="app-card card-padded toolbar-filter-row" aria-label="Pengaturan Rekap">
+      <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+        <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+          <label for="reportLevelSelect" style="font-weight: 700; font-size: 0.85rem; color: var(--text-main);">
+            Pilih Rekap Sesi Latihan:
+          </label>
+          <select id="reportLevelSelect" style="padding: 0.5rem 0.85rem; border: 1px solid var(--border-app); border-radius: 6px; font-weight: 700; font-size: 0.88rem; background: #fff; cursor: pointer;">
+            <option value="10" selected>Sesi Kelas 10 (Wira Mula)</option>
+            <option value="11">Sesi Kelas 11 (Wira Madya)</option>
+            <option value="all">Gabungan Seluruh Anggota (Kelas 10 & 11)</option>
+          </select>
+        </div>
+
+        <div style="display: flex; gap: 0.5rem;">
+          <button type="button" class="btn-app btn-app-primary" onclick="window.print()">
+            <i class="bi bi-printer-fill"></i> Cetak Lembar Laporan
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lembar Rekap Resmi dengan Kop Surat SMKN 7 Samarinda -->
+    <section class="report-sheet-container" aria-label="Lembar Rekapitulasi">
+      
+      <!-- Kop Surat -->
+      <div class="school-kop-header">
+        <img src="assets/images/smkn7-logo.png" alt="Logo SMKN 7" class="kop-logo-img">
+        <div class="kop-text-center">
+          <div class="kop-pemerintah">Pemerintah Provinsi Kalimantan Timur &bull; Dinas Pendidikan dan Kebudayaan</div>
+          <div class="kop-sekolah">SMK NEGERI 7 SAMARINDA</div>
+          <div class="kop-pmr">PALANG MERAH REMAJA (PMR) WIRA &bull; UNIT 07-SMD</div>
+          <div class="kop-alamat">Jalan Aminah Syukur No. 82, Kel. Pelabuhan, Kec. Samarinda Kota, Kota Samarinda 75112</div>
+        </div>
+        <img src="assets/images/pmr-logo.svg" alt="Logo PMR" class="kop-logo-img">
+      </div>
+
+      <!-- Judul Dokumen -->
+      <div class="report-doc-title">REKAPITULASI PRESENSI KEGIATAN LATIHAN PMR WIRA</div>
+      <div class="report-doc-subtitle" id="reportSessionSubtitle">
+        Rekapitulasi Kehadiran Sesi Latihan Kelas 10 (Wira Mula)
+      </div>
+
+      <!-- Tabel Rekap -->
+      <div class="table-container" style="border: 1px solid var(--border-app); margin-bottom: 2rem;">
+        <table class="table-presensi" style="font-size: 0.84rem;">
+          <thead>
+            <tr>
+              <th style="width: 40px; text-align: center;">No</th>
+              <th>NISN</th>
+              <th>Nama Lengkap Siswa</th>
+              <th>Kelas</th>
+              <th style="text-align: center; color: var(--col-hadir);">Hadir (H)</th>
+              <th style="text-align: center; color: var(--col-izin);">Izin (I)</th>
+              <th style="text-align: center; color: var(--col-sakit);">Sakit (S)</th>
+              <th style="text-align: center; color: var(--col-alpa);">Alpa (A)</th>
+              <th style="text-align: center;">% Kehadiran</th>
+              <th>Keterangan</th>
+            </tr>
+          </thead>
+          <tbody id="reportTableBody">
+            <!-- Diisi oleh reports-app.js -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Kolom Tanda Tangan -->
+      <div class="signature-grid">
+        <div>
+          <div style="font-size: 0.8rem; color: var(--text-muted);">Mengetahui,</div>
+          <div style="font-size: 0.84rem; font-weight: 700; color: var(--text-main); margin-bottom: 4rem;">
+            Pembina Utama PMR Wira SMKN 7 Samarinda
+          </div>
+          <div style="font-size: 0.9rem; font-weight: 800; text-decoration: underline; color: var(--text-main);">
+            Drs. H. Bambang Sudarsono, M.Pd
+          </div>
+          <div style="font-size: 0.76rem; color: var(--text-muted);">NIP. 19780512 200501 1 008</div>
+        </div>
+
+        <div>
+          <div style="font-size: 0.8rem; color: var(--text-muted);">Samarinda, 9 Oktober 2026</div>
+          <div style="font-size: 0.84rem; font-weight: 700; color: var(--text-main); margin-bottom: 4rem;">
+            Ketua PMR Wira SMKN 7 Samarinda
+          </div>
+          <div style="font-size: 0.9rem; font-weight: 800; text-decoration: underline; color: var(--text-main);">
+            Muhammad Farhan Alfiansyah
+          </div>
+          <div style="font-size: 0.76rem; color: var(--text-muted);">NISN. 0078129011 / Kelas XII RPL 1</div>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <script src="assets/js/db.js"></script>
+  <script src="assets/js/reports-app.js"></script>
+</body>
+</html>

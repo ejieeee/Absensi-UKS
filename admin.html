@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal Admin & Pembina - Presensi PMR SMKN 7 Samarinda</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/images/pmr-logo.svg">
+
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap Icons CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+
+  <!-- Top App Navigation Admin -->
+  <header class="app-navbar">
+    <div class="navbar-container">
+      <div class="brand-wrapper">
+        <img src="assets/images/pmr-logo.svg" alt="Logo PMR" class="brand-logo-img">
+        <div class="brand-details">
+          <span class="brand-main-title">PORTAL ADMIN & PEMBINA</span>
+          <span class="brand-sub-title">PMR Wira SMKN 7 Samarinda &bull; Unit 07-SMD</span>
+        </div>
+      </div>
+
+      <nav aria-label="Navigasi Menu Admin">
+        <ul class="navbar-nav">
+          <li>
+            <a href="admin.html" class="nav-item-link active">
+              <i class="bi bi-grid-1x2-fill"></i>
+              <span>Monitoring Presensi</span>
+            </a>
+          </li>
+          <li>
+            <a href="history.html" class="nav-item-link">
+              <i class="bi bi-clock-history"></i>
+              <span>Riwayat Latihan</span>
+            </a>
+          </li>
+          <li>
+            <a href="members.html" class="nav-item-link">
+              <i class="bi bi-people-fill"></i>
+              <span>Data Anggota</span>
+            </a>
+          </li>
+          <li>
+            <a href="reports.html" class="nav-item-link">
+              <i class="bi bi-file-earmark-text"></i>
+              <span>Rekap Laporan</span>
+            </a>
+          </li>
+          <li>
+            <a href="index.html" class="btn-app btn-app-outline" style="padding: 0.4rem 0.85rem; font-size: 0.8rem; margin-left: 0.5rem;" title="Kembali ke formulir presensi mandiri siswa">
+              <i class="bi bi-box-arrow-up-right"></i>
+              <span>Buka Presensi Siswa</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Konten Utama Portal Admin -->
+  <main class="main-wrapper">
+
+    <!-- Card Pemilihan Sesi & Tanggal Latihan -->
+    <section class="app-card card-padded session-selector-card" aria-label="Pemilihan Sesi Latihan">
+      <div class="session-header-row">
+        <div class="session-header-title">
+          <i class="bi bi-sliders" style="color: var(--pmr-primary);"></i>
+          <span>Kelola Sesi Latihan PMR</span>
+        </div>
+
+        <div class="date-badge-picker">
+          <label for="attendanceDatePicker" style="font-weight: 700; font-size: 0.8rem; color: var(--text-muted);">
+            <i class="bi bi-calendar-event"></i> Tanggal Latihan:
+          </label>
+          <input type="date" id="attendanceDatePicker" title="Ubah tanggal latihan">
+        </div>
+      </div>
+
+      <!-- Dua Tab Sesi Utama -->
+      <div class="session-tabs-grid">
+        <!-- Tab Sesi Kelas 10 -->
+        <button type="button" class="session-tab-btn active" id="tabSessionK10" aria-label="Pilih Sesi Latihan Kelas 10">
+          <div class="session-tab-info">
+            <span class="session-tag-label">SESI TINGKAT 1</span>
+            <span class="session-main-name">Latihan Kelas 10</span>
+            <span class="session-sub-detail">Tingkat Wira Mula &bull; <strong id="tabCount10">12 Anggota</strong></span>
+          </div>
+          <div class="session-active-check">
+            <i class="bi bi-check-lg"></i>
+          </div>
+        </button>
+
+        <!-- Tab Sesi Kelas 11 -->
+        <button type="button" class="session-tab-btn" id="tabSessionK11" aria-label="Pilih Sesi Latihan Kelas 11">
+          <div class="session-tab-info">
+            <span class="session-tag-label">SESI TINGKAT 2</span>
+            <span class="session-main-name">Latihan Kelas 11</span>
+            <span class="session-sub-detail">Tingkat Wira Madya &bull; <strong id="tabCount11">12 Anggota</strong></span>
+          </div>
+          <div class="session-active-check">
+            <i class="bi bi-check-lg"></i>
+          </div>
+        </button>
+      </div>
+    </section>
+
+    <!-- Pencarian Cepat Anggota (Autocomplete) -->
+    <section class="autocomplete-section" aria-label="Pencarian Nama Anggota">
+      <div class="autocomplete-box-wrap">
+        <i class="bi bi-search autocomplete-search-icon"></i>
+        <input type="text" 
+               id="autocompleteSearchInput" 
+               class="autocomplete-input" 
+               placeholder="Cari anggota untuk update presensi cepat..." 
+               autocomplete="off"
+               spellcheck="false">
+        <button type="button" class="autocomplete-clear-btn" id="clearSearchBtn" title="Hapus teks pencarian">
+          <i class="bi bi-x-circle-fill"></i>
+        </button>
+      </div>
+
+      <!-- Dropdown Hasil Pencarian -->
+      <div class="autocomplete-dropdown" id="autocompleteDropdown"></div>
+    </section>
+
+    <!-- Ringkasan Kehadiran Sesi -->
+    <section class="summary-strip" aria-label="Ringkasan Status Sesi">
+      <div class="summary-pill">
+        <span class="summary-pill-label">Total Anggota</span>
+        <span class="summary-pill-count" id="countTotal">0</span>
+      </div>
+      <div class="summary-pill pill-hadir">
+        <span class="summary-pill-label">Hadir (H)</span>
+        <span class="summary-pill-count" id="countHadir">0</span>
+      </div>
+      <div class="summary-pill pill-izin">
+        <span class="summary-pill-label">Izin (I)</span>
+        <span class="summary-pill-count" id="countIzin">0</span>
+      </div>
+      <div class="summary-pill pill-sakit">
+        <span class="summary-pill-label">Sakit (S)</span>
+        <span class="summary-pill-count" id="countSakit">0</span>
+      </div>
+      <div class="summary-pill pill-alpa">
+        <span class="summary-pill-label">Alpa (A)</span>
+        <span class="summary-pill-count" id="countAlpa">0</span>
+      </div>
+      <div class="summary-pill pill-belum">
+        <span class="summary-pill-label">Belum Absen</span>
+        <span class="summary-pill-count" id="countBelum">0</span>
+      </div>
+    </section>
+
+    <!-- Tabel Monitoring Presensi Lengkap Admin -->
+    <section class="app-card" aria-label="Tabel Monitoring Presensi">
+      <div style="padding: 1rem 1.25rem; border-bottom: 1px solid var(--border-app); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+        <div>
+          <h2 style="font-size: 1.05rem; font-weight: 800; color: var(--text-main);" id="currentSessionTitle">
+            Monitoring Presensi: Sesi Kelas 10 (Wira Mula)
+          </h2>
+          <span style="font-size: 0.76rem; color: var(--text-muted);" id="currentSessionCountBadge">
+            Memuat data...
+          </span>
+        </div>
+
+        <div style="display: flex; gap: 0.5rem;">
+          <button type="button" class="btn-app btn-app-outline" style="padding: 0.4rem 0.85rem; font-size: 0.8rem;" id="btnMarkAllPresent" title="Tandai seluruh siswa di sesi ini menjadi hadir">
+            <i class="bi bi-check-all"></i> Tandai Semua Hadir
+          </button>
+          <button type="button" class="btn-app btn-app-outline" style="padding: 0.4rem 0.85rem; font-size: 0.8rem;" id="btnResetSession" title="Reset status presensi sesi">
+            <i class="bi bi-arrow-counterclockwise"></i> Reset
+          </button>
+        </div>
+      </div>
+
+      <div class="table-container" style="border: none; border-radius: 0;">
+        <table class="table-presensi">
+          <thead>
+            <tr>
+              <th style="width: 40px; text-align: center;">No</th>
+              <th>Nama Siswa</th>
+              <th>Kelas</th>
+              <th>Status Kehadiran</th>
+              <th>Jam Masuk</th>
+              <th>Tanda Tangan</th>
+              <th>Catatan / Keterangan</th>
+            </tr>
+          </thead>
+          <tbody id="attendanceTableBody">
+            <!-- Diisi otomatis oleh admin-attendance.js -->
+          </tbody>
+        </table>
+      </div>
+
+      <div style="padding: 1rem 1.25rem; background-color: #f8fafc; border-top: 1px solid var(--border-app); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem;">
+        <span style="font-size: 0.8rem; color: var(--text-muted);">
+          <i class="bi bi-shield-check" style="color: var(--col-hadir);"></i> Perubahan status otomatis tersinkronisasi ke database sistem.
+        </span>
+
+        <button type="button" class="btn-app btn-app-primary" id="btnSaveSession">
+          <i class="bi bi-floppy-fill"></i> Simpan Data Presensi
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MODAL: PRATINJAU TANDA TANGAN BESAR -->
+  <div id="sigPreviewModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.6); z-index: 400; align-items: center; justify-content: center; padding: 1rem;">
+    <div style="background: #fff; border-radius: 12px; max-width: 450px; width: 100%; overflow: hidden; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.15);">
+      <div style="padding: 1rem 1.25rem; border-bottom: 1px solid var(--border-app); display: flex; justify-content: space-between; align-items: center;">
+        <h4 style="font-size: 0.95rem; font-weight: 800; color: var(--text-main);" id="sigPreviewTitle">Tanda Tangan</h4>
+        <button type="button" onclick="closeSigPreviewModal()" style="background: none; border: none; font-size: 1.25rem; cursor: pointer; color: var(--text-muted);">&times;</button>
+      </div>
+      <div style="padding: 1.5rem; text-align: center; background: #f8fafc;">
+        <img id="sigPreviewImg" src="" alt="Tanda Tangan Besar" style="max-width: 100%; max-height: 200px; border: 1px solid var(--border-app); background: #fff; border-radius: 8px; padding: 10px;">
+      </div>
+      <div style="padding: 0.75rem 1.25rem; background: #fff; border-top: 1px solid var(--border-app); display: flex; justify-content: flex-end;">
+        <button type="button" class="btn-app btn-app-outline" onclick="closeSigPreviewModal()">Tutup</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notifikasi Sederhana -->
+  <div id="appToastMsg" class="toast-msg-box" style="display: none;"></div>
+
+  <!-- Scripts -->
+  <script src="assets/js/db.js"></script>
+  <script src="assets/js/admin-attendance.js"></script>
+</body>
+</html>

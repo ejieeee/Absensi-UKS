@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Anggota Latihan PMR - SMKN 7 Samarinda</title>
+
+  <link rel="icon" type="image/svg+xml" href="assets/images/pmr-logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+
+  <!-- Top App Navigation -->
+  <header class="app-navbar">
+    <div class="navbar-container">
+      <div class="brand-wrapper">
+        <img src="assets/images/pmr-logo.svg" alt="Logo PMR" class="brand-logo-img">
+        <div class="brand-details">
+          <span class="brand-main-title">PRESENSI LATIHAN PMR</span>
+          <span class="brand-sub-title">PMR Wira SMKN 7 Samarinda &bull; Unit 07-SMD</span>
+        </div>
+      </div>
+
+      <nav aria-label="Navigasi Menu">
+        <ul class="navbar-nav">
+         <li>
+            <a href="admin.html" class="nav-item-link active">
+              <i class="bi bi-grid-1x2-fill"></i>
+              <span>Monitoring Presensi</span>
+            </a>
+          </li>
+          <li>
+            <a href="history.html" class="nav-item-link">
+              <i class="bi bi-clock-history"></i>
+              <span>Riwayat Latihan</span>
+            </a>
+          </li>
+          <li>
+            <a href="members.html" class="nav-item-link active">
+              <i class="bi bi-people-fill"></i>
+              <span>Data Anggota</span>
+            </a>
+          </li>
+          <li>
+            <a href="reports.html" class="nav-item-link">
+              <i class="bi bi-file-earmark-text"></i>
+              <span>Rekap Laporan</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Konten Utama -->
+  <main class="main-wrapper">
+
+    <!-- Card Filter & Tambah Anggota -->
+    <section class="app-card card-padded" aria-label="Manajemen Anggota">
+      <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+        <div>
+          <h1 style="font-size: 1.15rem; font-weight: 800; color: var(--text-main);">
+            <i class="bi bi-people-fill" style="color: var(--pmr-primary);"></i>
+            Data Anggota Latihan PMR Wira
+          </h1>
+          <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.2rem;">
+            Daftar siswa Kelas 10 dan Kelas 11 yang terdaftar di database presensi.
+          </p>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+          <!-- Filter Tabs Sesi -->
+          <div style="display: flex; gap: 0.35rem; background: #f1f5f9; padding: 3px; border-radius: 8px;">
+            <button type="button" class="btn-app btn-app-outline active" id="btnFilterAll" onclick="filterMembers('all')" style="padding: 0.35rem 0.75rem; font-size: 0.78rem;">
+              Semua (<span id="countTotalMembers">0</span>)
+            </button>
+            <button type="button" class="btn-app btn-app-outline" id="btnFilter10" onclick="filterMembers('10')" style="padding: 0.35rem 0.75rem; font-size: 0.78rem;">
+              Kelas 10 (<span id="countK10Members">0</span>)
+            </button>
+            <button type="button" class="btn-app btn-app-outline" id="btnFilter11" onclick="filterMembers('11')" style="padding: 0.35rem 0.75rem; font-size: 0.78rem;">
+              Kelas 11 (<span id="countK11Members">0</span>)
+            </button>
+          </div>
+
+          <button type="button" class="btn-app btn-app-primary" onclick="openAddModal()">
+            <i class="bi bi-person-plus-fill"></i> Tambah Anggota
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tabel Data Anggota -->
+    <section class="app-card" aria-label="Tabel Anggota">
+      <div class="table-container" style="border: none; border-radius: var(--radius-lg);">
+        <table class="table-presensi">
+          <thead>
+            <tr>
+              <th style="width: 40px; text-align: center;">No</th>
+              <th>Nama Lengkap</th>
+              <th>kelas</th>
+              <th>No. Telepon / WA</th>
+              <th>Divisi</th>
+            </tr>
+          </thead>
+          <tbody id="membersTableBody">
+            <!-- Diisi oleh members-app.js -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Modal Tambah Anggota Baru -->
+  <div id="addMemberModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.5); z-index: 300; align-items: center; justify-content: center; padding: 1rem;">
+    <div style="background: #fff; border-radius: 12px; max-width: 500px; width: 100%; overflow: hidden; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);">
+      <div style="padding: 1.15rem 1.5rem; border-bottom: 1px solid var(--border-app); display: flex; align-items: center; justify-content: space-between;">
+        <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--text-main);">Tambah Anggota PMR Baru</h3>
+        <button type="button" onclick="closeAddModal()" style="background: none; border: none; font-size: 1.25rem; cursor: pointer; color: var(--text-muted);">&times;</button>
+      </div>
+
+      <form id="addMemberForm">
+        <div style="padding: 1.5rem; display: flex; flex-direction: column; gap: 0.85rem;">
+          <div>
+            <label style="font-weight: 700; font-size: 0.8rem; color: var(--text-main); display: block; margin-bottom: 0.25rem;">
+              Nama Lengkap Siswa *
+            </label>
+            <input type="text" id="addMemberName" required placeholder="Contoh: Muhammad Farhan" style="width: 100%; padding: 0.55rem 0.75rem; border: 1px solid var(--border-app); border-radius: 6px; font-size: 0.88rem;">
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+
+            <div>
+              <label style="font-weight: 700; font-size: 0.8rem; color: var(--text-main); display: block; margin-bottom: 0.25rem;">
+                Kelas
+              </label>
+              <select id="addMemberKelas" required style="width: 100%; padding: 0.55rem 0.75rem; border: 1px solid var(--border-app); border-radius: 6px; font-size: 0.88rem; background: #fff;">
+                <option value="10">Kelas 10</option>
+                <option value="11">Kelas 11</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+            <div>
+              <label style="font-weight: 700; font-size: 0.8rem; color: var(--text-main); display: block; margin-bottom: 0.25rem;">
+                Jurusan
+              </label>
+              <input type="text" id="addMemberJurusan" required placeholder="X RPL 1 / XI TKJ 2" style="width: 100%; padding: 0.55rem 0.75rem; border: 1px solid var(--border-app); border-radius: 6px; font-size: 0.88rem;">
+            </div>
+
+            <div>
+              <label style="font-weight: 700; font-size: 0.8rem; color: var(--text-main); display: block; margin-bottom: 0.25rem;">
+                No. HP / WhatsApp
+              </label>
+              <input type="text" id="addMemberPhone" placeholder="0812-xxxx-xxxx" style="width: 100%; padding: 0.55rem 0.75rem; border: 1px solid var(--border-app); border-radius: 6px; font-size: 0.88rem;">
+            </div>
+          </div>
+        </div>
+
+        <div style="padding: 1rem 1.5rem; background: #f8fafc; border-top: 1px solid var(--border-app); display: flex; justify-content: flex-end; gap: 0.5rem;">
+          <button type="button" class="btn-app btn-app-outline" onclick="closeAddModal()">Batal</button>
+          <button type="submit" class="btn-app btn-app-primary">
+            <i class="bi bi-save"></i> Simpan ke Database
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="appToastMsg" class="toast-msg-box" style="display: none;"></div>
+
+  <script src="assets/js/db.js"></script>
+  <script src="assets/js/members-app.js"></script>
+</body>
+</html>
