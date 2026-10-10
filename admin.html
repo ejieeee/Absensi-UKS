@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portal Admin & Pembina - Presensi PMR SMKN 7 Samarinda</title>
+  <title>Portal Sekretaris - Presensi PMR SMKN 7 Samarinda</title>
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="assets/images/pmr-logo.svg">
@@ -17,26 +17,27 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="assets/css/main.css?v=99">
+  <link rel="stylesheet" href="assets/css/main.css?v=101">
 </head>
 <body>
 
   <!-- Top App Navigation Admin -->
   <header class="app-navbar">
     <div class="navbar-container">
-      
-      <!-- Tombol Hamburger (Hanya muncul & aktif di HP) -->
-      <button type="button" class="hamburger-btn" id="hamburgerToggle" aria-label="Buka Menu">
+      <div class="brand-wrapper">
+        <a href="admin.html" style="display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: inherit;">
+          <img src="assets/images/pmr-logo.svg" alt="Logo PMR" class="brand-logo-img">
+          <div class="brand-details">
+            <span class="brand-main-title">PORTAL SEKRETARIS</span>
+            <span class="brand-sub-title">PMR Wira SMKN 7 Samarinda &bull; Unit 07-SMD</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Tombol Hamburger (Khusus Mobile) -->
+      <button type="button" class="hamburger-btn" id="hamburgerToggle" aria-label="Buka Menu" aria-expanded="false">
         <i class="bi bi-list"></i>
       </button>
-
-      <div class="brand-wrapper">
-        <img src="assets/images/pmr-logo.svg" alt="Logo PMR" class="brand-logo-img">
-        <div class="brand-details">
-          <span class="brand-main-title">PORTAL ADMIN & PEMBINA</span>
-          <span class="brand-sub-title">PMR Wira SMKN 7 Samarinda &bull; Unit 07-SMD</span>
-        </div>
-      </div>
 
       <!-- Bungkus nav dengan id="navMenu" dan class nav-menu-collapse -->
       <nav aria-label="Navigasi Menu Admin" id="navMenu" class="nav-menu-collapse">
@@ -65,8 +66,8 @@
               <span>Rekap Laporan</span>
             </a>
           </li>
-          <li>
-            <a href="index.html" class="btn-app btn-app-outline" style="padding: 0.4rem 0.85rem; font-size: 0.8rem; margin-left: 0.5rem;" title="Kembali ke formulir presensi mandiri siswa">
+          <li class="nav-item-cta">
+            <a href="index.html" class="btn-app btn-app-outline btn-portal-switch" title="Kembali ke formulir presensi mandiri siswa">
               <i class="bi bi-box-arrow-up-right"></i>
               <span>Buka Presensi Siswa</span>
             </a>
@@ -172,7 +173,7 @@
 
     <!-- Tabel Monitoring Presensi Lengkap Admin -->
     <section class="app-card" aria-label="Tabel Monitoring Presensi">
-      <div style="padding: 1rem 1.25rem; border-bottom: 1px solid var(--border-app); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+      <div class="admin-card-header" style="padding: 1rem 1.25rem; border-bottom: 1px solid var(--border-app); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
         <div>
           <h2 style="font-size: 1.05rem; font-weight: 800; color: var(--text-main);" id="currentSessionTitle">
             Monitoring Presensi: Sesi Kelas 10 (Wira Mula)
@@ -182,7 +183,7 @@
           </span>
         </div>
 
-        <div style="display: flex; gap: 0.5rem;">
+        <div class="admin-header-actions" style="display: flex; gap: 0.5rem;">
           <button type="button" class="btn-app btn-app-outline" style="padding: 0.4rem 0.85rem; font-size: 0.8rem;" id="btnMarkAllPresent" title="Tandai seluruh siswa di sesi ini menjadi hadir">
             <i class="bi bi-check-all"></i> Tandai Semua Hadir
           </button>
@@ -246,27 +247,6 @@
   <!-- Scripts -->
   <script src="assets/js/db.js"></script>
   <script src="assets/js/admin-attendance.js"></script>
-
-  <!-- Script untuk Interaksi Tombol Hamburger -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const hamburgerBtn = document.getElementById('hamburgerToggle');
-      const navMenu = document.getElementById('navMenu');
-
-      if (hamburgerBtn && navMenu) {
-        hamburgerBtn.addEventListener('click', function() {
-          navMenu.classList.toggle('show');
-          const icon = hamburgerBtn.querySelector('i');
-          if (navMenu.classList.contains('show')) {
-            icon.classList.remove('bi-list');
-            icon.classList.add('bi-x-lg');
-          } else {
-            icon.classList.remove('bi-x-lg');
-            icon.classList.add('bi-list');
-          }
-        });
-      }
-    });
-  </script>
+  <script src="assets/js/navbar.js"></script>
 </body>
 </html>
