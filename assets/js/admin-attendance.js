@@ -495,3 +495,25 @@ window.switchToSessionAndMark = switchToSessionAndMark;
 window.previewLargeSignature = previewLargeSignature;
 window.closeSigPreviewModal = closeSigPreviewModal;
 window.showToast = showToast;
+
+// ==========================================
+// SCRIPT HAMBURGER MENU MOBILE
+// ==========================================
+document.addEventListener('DOMContentLoaded', function() {
+  const hamburgerBtn = document.getElementById('hamburgerToggle');
+  const navMenu = document.getElementById('navMenu');
+
+  if (hamburgerBtn && navMenu) {
+    hamburgerBtn.addEventListener('click', function() {
+      navMenu.classList.toggle('show');
+      const icon = hamburgerBtn.querySelector('i');
+      if (navMenu.classList.contains('show')) {
+        icon.classList.remove('bi-list');
+        icon.classList.add('bi-x-lg');
+      } else {
+        icon.classList.remove('bi-x-lg');
+        icon.classList.add('bi-list');
+      }
+    });
+  }
+});
