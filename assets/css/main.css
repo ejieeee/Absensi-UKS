@@ -1000,3 +1000,29 @@ a {
   }
 }
 
+/* Pengaturan Responsive khusus untuk layar HP (Maksimal lebar 768px) */
+@media screen and (max-width: 768px) {
+  /* Ubah layout navbar menjadi menumpuk ke bawah */
+  .navbar-container {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .navbar-nav {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  /* Sesuaikan ukuran font judul di mobile agar tidak terlalu besar */
+  .brand-main-title {
+    font-size: 0.9rem;
+  }
+  
+  .brand-sub-title {
+    font-size: 0.75rem;
+  }
+}
+
