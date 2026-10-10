@@ -1065,3 +1065,67 @@ a {
     justify-content: center;
   }
 }
+
+/* ==========================================================================
+   HAMBURGER MENU KHUSUS PERANGKAT MOBILE (LAYAR <= 768px)
+   ========================================================================== */
+
+/* Default di Desktop: Tombol hamburger disembunyikan */
+.hamburger-btn {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  /* Tampilkan tombol hamburger di HP */
+  .hamburger-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    font-size: 1.6rem;
+    color: var(--text-main);
+    cursor: pointer;
+    padding: 0.2rem;
+  }
+
+  .navbar-container {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* Sembunyikan menu navigasi secara default di HP */
+  .nav-menu-collapse {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border-app);
+    margin-top: 0.5rem;
+  }
+
+  /* Munculkan menu saat kelas 'show' ditambahkan via JavaScript */
+  .nav-menu-collapse.show {
+    display: flex;
+  }
+
+  /* Ubah susunan menu di dalam dropdown menjadi kebawah */
+  .navbar-nav {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.35rem;
+  }
+
+  .nav-item-link {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  /* Sesuaikan tombol shortcut presensi siswa di dalam menu HP */
+  .navbar-nav .btn-app {
+    margin-left: 0 !important;
+    width: 100%;
+    justify-content: center;
+  }
+}
