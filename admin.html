@@ -17,9 +17,12 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="assets/css/main.css?v=101">
+  <link rel="stylesheet" href="assets/css/main.css?v=105">
 </head>
 <body>
+
+  <!-- Backdrop Menu Samping Mobile -->
+  <div id="navBackdrop" class="mobile-nav-backdrop" onclick="closeNavMenu()"></div>
 
   <!-- Top App Navigation Admin -->
   <header class="app-navbar">
@@ -35,44 +38,68 @@
       </div>
 
       <!-- Tombol Hamburger (Khusus Mobile) -->
-      <button type="button" class="hamburger-btn" id="hamburgerToggle" aria-label="Buka Menu" aria-expanded="false">
+      <button type="button" class="hamburger-btn" id="hamburgerToggle" onclick="toggleNavMenu()" aria-label="Buka Menu" aria-expanded="false">
         <i class="bi bi-list"></i>
       </button>
 
-      <!-- Bungkus nav dengan id="navMenu" dan class nav-menu-collapse -->
+      <!-- Navigasi Menu: Desktop di atas, Mobile Drawer ke Samping -->
       <nav aria-label="Navigasi Menu Admin" id="navMenu" class="nav-menu-collapse">
-        <ul class="navbar-nav">
-          <li>
-            <a href="admin.html" class="nav-item-link active">
-              <i class="bi bi-grid-1x2-fill"></i>
-              <span>Monitoring Presensi</span>
-            </a>
-          </li>
-          <li>
-            <a href="history.html" class="nav-item-link">
-              <i class="bi bi-clock-history"></i>
-              <span>Riwayat Latihan</span>
-            </a>
-          </li>
-          <li>
-            <a href="members.html" class="nav-item-link">
-              <i class="bi bi-people-fill"></i>
-              <span>Data Anggota</span>
-            </a>
-          </li>
-          <li>
-            <a href="reports.html" class="nav-item-link">
-              <i class="bi bi-file-earmark-text"></i>
-              <span>Rekap Laporan</span>
-            </a>
-          </li>
-          <li class="nav-item-cta">
-            <a href="index.html" class="btn-app btn-app-outline btn-portal-switch" title="Kembali ke formulir presensi mandiri siswa">
-              <i class="bi bi-box-arrow-up-right"></i>
-              <span>Buka Presensi Siswa</span>
-            </a>
-          </li>
-        </ul>
+        <!-- Header Drawer Samping (Khusus Mobile) -->
+        <div class="drawer-header">
+          <div style="display: flex; align-items: center; gap: 0.65rem;">
+            <img src="assets/images/pmr-logo.svg" alt="Logo PMR" style="width: 32px; height: 32px;">
+            <div>
+              <div style="font-size: 0.92rem; font-weight: 800; color: var(--pmr-primary); line-height: 1.2;">PORTAL SEKRETARIS</div>
+              <div style="font-size: 0.68rem; color: var(--text-muted); font-weight: 600;">PMR Wira SMKN 7 Samarinda</div>
+            </div>
+          </div>
+          <button type="button" class="drawer-close-btn" id="drawerCloseBtn" onclick="closeNavMenu()" aria-label="Tutup Menu">
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+
+        <!-- Badan Menu Navigasi -->
+        <div class="drawer-nav-body">
+          <div class="drawer-section-label">Menu Portal</div>
+          <ul class="navbar-nav">
+            <li>
+              <a href="admin.html" class="nav-item-link active">
+                <i class="bi bi-grid-1x2-fill"></i>
+                <span>Monitoring Presensi</span>
+              </a>
+            </li>
+            <li>
+              <a href="history.html" class="nav-item-link">
+                <i class="bi bi-clock-history"></i>
+                <span>Riwayat Latihan</span>
+              </a>
+            </li>
+            <li>
+              <a href="members.html" class="nav-item-link">
+                <i class="bi bi-people-fill"></i>
+                <span>Data Anggota</span>
+              </a>
+            </li>
+            <li>
+              <a href="reports.html" class="nav-item-link">
+                <i class="bi bi-file-earmark-text"></i>
+                <span>Rekap Laporan</span>
+              </a>
+            </li>
+            <li class="nav-item-cta">
+              <a href="index.html" class="btn-app btn-app-outline btn-portal-switch" title="Kembali ke formulir presensi mandiri siswa">
+                <i class="bi bi-box-arrow-up-right"></i>
+                <span>Buka Presensi Siswa</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Footer Drawer Samping (Khusus Mobile) -->
+        <div class="drawer-footer">
+          <div>Unit PMR Wira SMKN 7 SMD</div>
+          <div style="font-size: 0.68rem; color: var(--text-muted); margin-top: 2px;">Sistem Presensi Latihan</div>
+        </div>
       </nav>
     </div>
   </header>
@@ -236,7 +263,7 @@
         <img id="sigPreviewImg" src="" alt="Tanda Tangan Besar" style="max-width: 100%; max-height: 200px; border: 1px solid var(--border-app); background: #fff; border-radius: 8px; padding: 10px;">
       </div>
       <div style="padding: 0.75rem 1.25rem; background: #fff; border-top: 1px solid var(--border-app); display: flex; justify-content: flex-end;">
-        <button type="button" class="btn-app btn-app-outline" onclick="closeSigPrevModal()">Tutup</button>
+        <button type="button" class="btn-app btn-app-outline" onclick="closeSigPreviewModal()">Tutup</button>
       </div>
     </div>
   </div>
@@ -247,6 +274,6 @@
   <!-- Scripts -->
   <script src="assets/js/db.js"></script>
   <script src="assets/js/admin-attendance.js"></script>
-  <script src="assets/js/navbar.js"></script>
+  <script src="assets/js/navbar.js?v=105"></script>
 </body>
 </html>
